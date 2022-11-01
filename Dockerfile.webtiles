@@ -15,9 +15,13 @@ ENV CRAWL_REPO="https://github.com/crawl/crawl.git" \
 RUN apt-get update && \
   apt-get upgrade -y && \
   apt-get install -y ${BUILD_DEPS} ${APP_DEPS}
-
+  
 # Retrieve crawl
 RUN git clone ${CRAWL_REPO} /src/
+
+# Change crawl version
+RUN cd /src/crawl-ref/source
+RUN git checkout 0.22.1
 
 # Build crawl
 RUN cd /src/crawl-ref/source && \
