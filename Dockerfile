@@ -21,6 +21,8 @@ RUN git clone ${CRAWL_REPO} /src/
 
 # Build crawl
 RUN cd /src/crawl-ref/source && \
+  git checkout 0.22.1 \
+  git pull \
   make install -j4 DESTDIR=/app/ USE_DGAMELAUNCH=y WEBTILES=y
 
 # Set up webserver components
